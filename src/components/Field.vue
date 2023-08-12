@@ -9,6 +9,7 @@ const props = defineProps({
 const emit = defineEmits(['fieldclicked'])
 
 let fieldvalue = ref('')
+let mousehover = ref(false)
 
 const setField = () => {
   if (fieldvalue.value === '') {
@@ -20,9 +21,12 @@ const setField = () => {
 </script>
 
 <template>
-  <div class="field" :class="{'border-right': id % 3 !== 0, 'border-bottom': id < 7}" @click="setField">
+  <div class="field" :class="{'border-right': id % 3 !== 0, 'border-bottom': id < 7}" @click="setField" @mouseover="mousehover = true" @mouseleave="mousehover = false">
     <i class="fa-solid fa-circle xl" v-if="fieldvalue === 'o'"></i>
     <i class="fa-solid fa-times xxl" v-if="fieldvalue === 'x'"></i>
+
+    <i class="fa-solid fa-circle xl grey" v-if="props.currentplayer() === 'o' && mousehover && fieldvalue === ''"></i>
+    <i class="fa-solid fa-times xxl grey" v-if="props.currentplayer() === 'x' && mousehover && fieldvalue === ''"></i>
   </div>
 </template>
 
@@ -47,5 +51,9 @@ const setField = () => {
 
 .xxl {
   font-size: 10rem;
+}
+
+.grey {
+  color: rgb(44, 44, 44);
 }
 </style>
