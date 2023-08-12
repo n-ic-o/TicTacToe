@@ -1,29 +1,4 @@
 # TicTacToe
 
-This template should help get you started developing with Vue 3 in Vite.
+<img width="1435" alt="Bildschirmfoto 2023-08-13 um 01 03 42" src="https://github.com/n-ic-o/TicTacToe/assets/100240857/45a68dea-cbad-4f4f-a72f-ab4fd07e54bc">
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
