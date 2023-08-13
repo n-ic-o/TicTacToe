@@ -3,30 +3,23 @@ import { ref } from 'vue'
 
 const props = defineProps({
   id: Number,
-  currentplayer: Function
+  currentplayer: Function,
+  gamefield: Array,
+  gameover: Array
 })
 
 const emit = defineEmits(['fieldclicked'])
 
-let fieldvalue = ref('')
 let mousehover = ref(false)
-
-const setField = () => {
-  if (fieldvalue.value === '') {
-    fieldvalue.value = props.currentplayer()
-    console.log(props.currentplayer())
-    emit('fieldclicked')
-  }
-}
 </script>
 
 <template>
-  <div class="field" :class="{'border-right': id % 3 !== 0, 'border-bottom': id < 7}" @click="setField" @mouseover="mousehover = true" @mouseleave="mousehover = false">
-    <i class="fa-solid fa-circle xl" v-if="fieldvalue === 'o'"></i>
-    <i class="fa-solid fa-times xxl" v-if="fieldvalue === 'x'"></i>
+  <div class="field" :class="{'border-right': id % 3 !== 0, 'border-bottom': id < 7}" @click="emit('fieldclicked', id)" @mouseover="mousehover = true" @mouseleave="mousehover = false">
+    <i class="fa-solid fa-circle xl" v-if="gamefield.find((f) => f.id === id && f.player === 'o')" :class="{'win': props.gameover.includes(id)}"></i>
+    <i class="fa-solid fa-times xxl" v-if="gamefield.find((f) => f.id === id && f.player === 'x')" :class="{'win': props.gameover.includes(id)}"></i>
 
-    <i class="fa-solid fa-circle xl grey" v-if="props.currentplayer() === 'o' && mousehover && fieldvalue === ''"></i>
-    <i class="fa-solid fa-times xxl grey" v-if="props.currentplayer() === 'x' && mousehover && fieldvalue === ''"></i>
+    <i class="fa-solid fa-circle xl grey" v-if="props.currentplayer() === 'o' && mousehover && !gamefield.find((f) => f.id === id) && !props.gameover.length"></i>
+    <i class="fa-solid fa-times xxl grey" v-if="props.currentplayer() === 'x' && mousehover && !gamefield.find((f) => f.id === id) && !props.gameover.length"></i>
   </div>
 </template>
 
@@ -55,5 +48,9 @@ const setField = () => {
 
 .grey {
   color: rgb(44, 44, 44);
+}
+
+.win {
+  color: gold;
 }
 </style>

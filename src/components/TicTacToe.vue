@@ -1,6 +1,8 @@
 <script setup>
 import GameField from './GameField.vue'
 import Stats from './Stats.vue'
+import { ref } from 'vue'
+
 </script>
 
 <template>
