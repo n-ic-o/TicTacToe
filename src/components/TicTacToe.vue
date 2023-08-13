@@ -3,15 +3,26 @@ import GameField from './GameField.vue'
 import Stats from './Stats.vue'
 import { ref } from 'vue'
 
+let xwins = ref(0)
+let owins = ref(0)
+
+const handleWin = (winner) => {
+  if (winner === 'x') {
+    xwins.value++
+  } else if (winner === 'o') {
+    owins.value++
+  }
+}
+
 </script>
 
 <template>
   <div class="container">
     <div class="box">
-      <GameField />
+      <GameField @win="handleWin" />
     </div>
     <div class="box">
-      <Stats />
+      <Stats :xwins="xwins" :owins="owins" />
     </div>
   </div>
 </template>

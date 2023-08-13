@@ -1,16 +1,17 @@
 <script setup>
 import { ref } from 'vue'
 
-let xwins = ref(0)
-let owins = ref(0)
-
-const addWin = (winner) => {
-  if (winner === 'x') {
-    xwins.value++
-  } else if (winner === 'o') {
-    owins.value++
+const props = defineProps({
+  xwins: {
+    type: Number,
+    required: true
+  },
+  owins: {
+    type: Number,
+    required: true
   }
-}
+})
+
 </script>
 
 <template>

@@ -2,6 +2,8 @@
 import Field from './Field.vue'
 import { ref } from 'vue'
 
+const emit = defineEmits(['win'])
+
 let currentplayer = ref('x')
 let gamefield = ref([])
 let gameover = ref([])
@@ -64,6 +66,8 @@ const calculateWinner = (player) => {
 }
 
 const addWin = (winner) => {
+  emit('win', winner)
+
   setTimeout(() => {
     newGame()
   }, 2000)
