@@ -26,8 +26,20 @@ const handleClick = (field) => {
 const calculateWinner = (player) => {
   for (let i = 0; i < 3; i++) {
     if (gamefield.value.filter((f) => f.id % 3 === i && f.player === player).length === 3) {
-      for (let j = 0; j < 3; j++) {
-        gameover.value.push(i + j * 3)
+      if (i === 0) {
+        for (let i = 3; i < 10; i += 3) {
+          gameover.value.push(i)
+        }
+      }
+      if (i === 1) {
+        for (let i = 1; i < 10; i += 3) {
+          gameover.value.push(i)
+        }
+      }
+      if (i === 2) {
+        for (let i = 2; i < 11; i += 3) {
+          gameover.value.push(i)
+        }
       }
       return true
     }
@@ -79,7 +91,7 @@ const getcurrentplayer = () => {
 
 const newGame = () => {
   gamefield.value = []
-  currentplayer.value = 'x'
+  currentplayer.value = currentplayer.value === 'x' ? 'o' : 'x'
   gameover.value = []
 }
 </script>
